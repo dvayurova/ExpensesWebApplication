@@ -1,8 +1,10 @@
 package pet.project.expenseswebapp.controller;
 
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,7 +35,11 @@ class ExpenseController {
     }
 
     @PostMapping("expense-create")
-    public String createExpense(Expense expense){
+    public String createExpense(@Valid Expense expense, BindingResult result, Model model){
+        if(result.hasErrors()){
+            model.addAttribute("errors", result.getAllErrors());
+            return "expense-create";
+        }
         expenseService.saveExpense(expense);
         return "redirect:/expenses";
     }
@@ -52,7 +58,10 @@ class ExpenseController {
     }
 
     @PostMapping("/expense-update")
-    public String updateExpense(@ModelAttribute("expense") Expense expense){
+    public String updateExpense(@Valid @ModelAttribute("expense") Expense expense, BindingResult result){
+        if(result.hasErrors()){
+            return "/expense-update";
+        }
         expenseService.saveExpense(expense);
         return "redirect:/expenses";
     }

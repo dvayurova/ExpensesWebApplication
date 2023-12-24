@@ -52,6 +52,12 @@
     <label for="description">description</label>
     <input type="text" th:field="*{description}" id="description" placeholder="Description">
     <br/>
+    <div th:if="${#fields.hasErrors('*')}">
+        <p style="color: red;">Please correct the following errors:</p>
+        <ul>
+            <li th:each="error : ${#fields.errors('*')}" th:text="${error}"></li>
+        </ul>
+    </div>
     <input type="submit" value="Update expense">
 </form>
 </body>
