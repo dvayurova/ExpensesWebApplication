@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Expenses by Category</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        a {
+            text-decoration: none;
+            color: #3498db;
+        }
+
+        a:hover {
+            color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+<div th:switch="${expensesByCategory}">
+    <h2 th:case="null">No expenses found!</h2>
+    <div th:case="*">
+        <h2>Expenses by Category</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Category</th>
+                <th>Total Amount</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="entry : ${expensesByCategory}">
+                <td th:text="${entry.key}"></td>
+                <td th:text="${entry.value}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

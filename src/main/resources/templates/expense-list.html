@@ -46,6 +46,7 @@
                 <th>date</th>
                 <th>amount</th>
                 <th>description</th>
+                <th>category</th>
             </tr>
             </thead>
             <tbody>
@@ -54,6 +55,7 @@
                 <td th:text="${expense.date}"></td>
                 <td th:text="${expense.amount}"></td>
                 <td th:text="${expense.description}"></td>
+                <td th:text="${expense.category}"></td>
                 <td><a th:href="@{/expense-update/{id}(id=${expense.id})}">Edit</a></td>
                 <td><a th:href="@{expense-delete/{id}(id=${expense.id})}">Delete</a></td>
             </tr>
@@ -61,6 +63,8 @@
         </table>
     </div>
     <p><a href="/expense-create">Add expense</a></p>
+    <p><a href="/expenses-by-category">Show statistics by category</a></p>
+    <p><a href="/expenses-by-month">Show statistics by month</a></p>
 </div>
 </body>
 </html>

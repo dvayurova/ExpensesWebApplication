@@ -51,6 +51,14 @@
     <input type="text" th:field="*{amount}" id="amount" placeholder="Amount">
     <label for="description">description</label>
     <input type="text" th:field="*{description}" id="description" placeholder="Description">
+    <label for="category">Category</label>
+    <select th:field="*{category}" id="category">
+        <option value="Supermarket">Supermarket</option>
+        <option value="Entertainment">Entertainment</option>
+        <option value="Restaurant">Restaurant</option>
+        <option value="Transportation">Transportation</option>
+        <option value="Beauty and health">Beauty and health</option>
+    </select>
     <br/>
     <div th:if="${#fields.hasErrors('*')}">
         <p style="color: red;">Please correct the following errors:</p>

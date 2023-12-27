@@ -22,14 +22,17 @@ public class Expense {
     private  float amount;
     @NotBlank(message = "Please enter a description")
     private  String description;
+    @NotBlank(message = "Category cannot be blank")
+    private  String category;
 
     public Expense() {
     }
 
-    public Expense(Long id, LocalDate date, float amount, String description) {
+    public Expense(Long id, LocalDate date, float amount, String description, String category) {
         this.id = id;
         this.date = date;
         this.amount = amount;
         this.description = description;
+        this.category = category;
     }
 }

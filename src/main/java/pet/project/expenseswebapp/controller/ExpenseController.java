@@ -13,6 +13,7 @@ import pet.project.expenseswebapp.model.Expense;
 import pet.project.expenseswebapp.service.ExpenseService;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 class ExpenseController {
@@ -42,6 +43,20 @@ class ExpenseController {
         }
         expenseService.saveExpense(expense);
         return "redirect:/expenses";
+    }
+
+    @GetMapping("/expenses-by-category")
+    public String expensesByCategory(Model model) {
+        Map<String, Double> expensesByCategory = expenseService.calculateTotalExpensesByCategory();
+        model.addAttribute("expensesByCategory", expensesByCategory);
+        return "expenses-by-category";
+    }
+
+    @GetMapping("/expenses-by-month")
+    public String expensesByMonth(Model model){
+        Map<String, Double> expensesByMonth = expenseService.calculateTotalExpensesByMonth();
+        model.addAttribute("expensesByMonth", expensesByMonth);
+        return  ("expenses-by-month");
     }
 
     @GetMapping("/expense-delete/{id}")
